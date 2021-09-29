@@ -1,9 +1,14 @@
 <?php
 require '../vendor/autoload.php';
 
+
+define("VIEWS_PATH", "../Views/");
+
 $api = new \Sheeva\Api();
 // $api->run();
 $api->run()->call;
+$api->render();
+
 
 
 
