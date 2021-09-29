@@ -8,9 +8,7 @@ $api = new \Sheeva\Api();
 $config = new \Sheeva\ConfigBuilder();
 // $api->run();
 $api->run()->call;
-$api->render();
-
-
+$api->render(["Salut"]);
 
 
 
