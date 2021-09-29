@@ -7,12 +7,6 @@ class Api
 
     public array $call;
 
-
-    public function __invoke()
-    {
-        var_dump("Ok");
-    }
-
     public function run()
     {
         $uri = $_SERVER['REQUEST_URI'];
@@ -29,19 +23,39 @@ class Api
         return $this;
     }
 
-    public function render($datas = [])
+    public function dispatch()
     {
-        if (!is_null($this->call) && !empty($this->call)) {
-            if (is_file(VIEWS_PATH . $this->call[0] . ".php")) {
-                include VIEWS_PATH . $this->call[0] . ".php";
+        if (!is_null($this->call[1]) && !empty($this->call[1])) {
+            $temp_class =  "\Sheeva\Controllers\\" . $this->call[1];
+            if (class_exists($temp_class)) {
+                $this->class = new $temp_class;
+                if (!is_null($this->call[2]) && !empty($this->call[2])) {
+                    $action = $this->call[2];
+                    if (method_exists($this->class, $action))
+                        $this->action = $action;
+                }
+            } else {
+                //Call Exception 
             }
         }
 
         return $this;
     }
 
-    public function view()
+    public function render()
     {
-        echo $this->view;
+        if (!is_null($this->call[0]) && !empty($this->call[0])) {
+            if (is_file(VIEWS_PATH . $this->call[0] . ".php")) {
+                $action = $this->action;
+                if ($datas = $this->class->$action()) {
+                    include VIEWS_PATH . $this->call[0] . ".php";
+                } else {
+                    // Erreur Controller
+                }
+            }
+        } else {
+            // Call Exception
+        }
+        return $this;
     }
 }

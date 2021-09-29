@@ -6,8 +6,11 @@ define("VIEWS_PATH", "../Views/");
 
 $api = new \Sheeva\Api();
 $config = new \Sheeva\ConfigBuilder();
-$api->run()->call;
-$api->render();
+$api->run()->dispatch()->render();
+
+
+
+
 
 
 // $client = new \GuzzleHttp\Client();
