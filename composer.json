@@ -1,0 +1,17 @@
+{
+    "name": "jinn/api",
+    "authors": [
+        {
+            "name": "Alexandre Quilan-Delaistre",
+            "email": "alexandre@top.coach"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sheeva\\": "src/Sheeva"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.3"
+    }
+}
