@@ -29,15 +29,11 @@ class Api
         return $this;
     }
 
-    public function render($datas)
+    public function render($datas = [])
     {
         if (!is_null($this->call) && !empty($this->call)) {
             if (is_file(VIEWS_PATH . $this->call[0] . ".php")) {
-                // ob_start();
-
                 include VIEWS_PATH . $this->call[0] . ".php";
-
-                // $this->view = ob_get_clean();
             }
         }
 
