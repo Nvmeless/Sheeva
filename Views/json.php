@@ -1,12 +1,14 @@
 <?php
-$time =  new DateTime();
-$client = new \GuzzleHttp\Client();
+
 header('Content-Type: application/json');
-
-$datas['infos'] = [
-    'code' => $_SERVER['REDIRECT_STATUS'],
-    'timestamp' => $time->getTimestamp()
+$datas = [
+    'datas' => $datas,
+    'metadatas' => [
+        'code' => $_SERVER['REDIRECT_STATUS'],
+        'timestamp' => time(),
+        'timezone' => date_default_timezone_get(),
+        'version' => "1.0.0.0"
+    ]
 ];
-
 
 echo json_encode($datas);

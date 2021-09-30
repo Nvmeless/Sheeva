@@ -5,7 +5,10 @@ namespace Sheeva;
 class Api
 {
 
-    public array $call;
+    private array $call;
+    private $action;
+    private $class;
+    private $config;
 
     public function run()
     {
@@ -28,7 +31,7 @@ class Api
         if (!is_null($this->call[1]) && !empty($this->call[1])) {
             $temp_class =  "\Sheeva\Controllers\\" . $this->call[1];
             if (class_exists($temp_class)) {
-                $this->class = new $temp_class;
+                $this->class = new $temp_class($this);
                 if (!is_null($this->call[2]) && !empty($this->call[2])) {
                     $action = $this->call[2];
                     if (method_exists($this->class, $action))
@@ -58,4 +61,23 @@ class Api
         }
         return $this;
     }
+
+    public function setConfigs($config = null){ 
+        if(!is_null($config)){ 
+            $this->config = $config;
+        }
+    }
+
+    public function Configs(){ 
+        return $this->config;
+    }
+
+    public function setDatabase(){ 
+
+        if(!empty($this->config->database())){ 
+            $this->Database = new \Sheeva\Database($this->config->database());
+        }
+    }
+
+
 }

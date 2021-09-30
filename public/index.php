@@ -2,16 +2,25 @@
 require '../vendor/autoload.php';
 require '../Configs/default.php';
 
-define("VIEWS_PATH", "../Views/");
 
+if(SHEEVA_CONFIGS['debug']){
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+}
 $api = new \Sheeva\Api();
 $config = new \Sheeva\ConfigBuilder();
+
+$api->setConfigs($config);
+$api->setDatabase();
 $api->run()->dispatch()->render();
 
 
 
 
 
+
+// $client = new \GuzzleHttp\Client();
 
 // $client = new \GuzzleHttp\Client();
 // $response = $client->request('GET', 'https://api.github.com/repos/guzzle/guzzle');
