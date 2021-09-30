@@ -1,4 +1,5 @@
 apache2 vhost : 
+```
 <VirtualHost *:80>
         ServerAdmin jinn@orpheus.website
         ServerName lab.orpheus.local
@@ -17,7 +18,7 @@ apache2 vhost :
         ErrorLog /var/log/apache2/apache_error_moodle.log
         CustomLog /var/log/apache2/apache_access_moodle.log combined
 </VirtualHost>
-
-etc/hosts
-127.0.0.1       lab.orpheus.local
+```
+sudo etc/hosts
+```127.0.0.1       lab.orpheus.local```
 
