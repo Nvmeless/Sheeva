@@ -21,13 +21,9 @@ class Database {
 
     public function simpleQuery(string $sql) : array {
         $return = [];
-        foreach  ($this->connexion->query($sql) as $row) {
-
-            var_dump("OK");
-            var_dump($row);
+        foreach  ($this->connexion->query($sql, \PDO::FETCH_ASSOC) as $row) {
             $return[] = $row;
         }
-        die();
         return $return;
     }
 
